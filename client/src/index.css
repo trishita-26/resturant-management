@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ─── Bengali Theme Variables ─────────────────────────────────────────────── */
+:root,
+[data-theme='dark'] {
+  --bg-base: #120c04;
+  --bg-surface: #1e1508;
+  --bg-elevated: #2a1f0e;
+  --bg-overlay: #3a2c16;
+  --border-color: #4a3820;
+  --text-primary: #fef3e2;
+  --text-secondary: #c9a87c;
+  --text-muted: #8a6a44;
+  --brand: #e8970e;
+  --brand-light: #f5b531;
+  --brand-dark: #c47a08;
+  --accent: #b91c1c;
+  --accent-light: #dc2626;
+  --success: #15803d;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  --pattern-opacity: 0.04;
+}
+
+[data-theme='light'] {
+  --bg-base: #fef9f0;
+  --bg-surface: #ffffff;
+  --bg-elevated: #fef3e2;
+  --bg-overlay: #fde8c0;
+  --border-color: #e8c97a;
+  --text-primary: #1a0a00;
+  --text-secondary: #6b3f10;
+  --text-muted: #9a6a3a;
+  --brand: #c47a08;
+  --brand-light: #e8970e;
+  --brand-dark: #9a5e04;
+  --accent: #b91c1c;
+  --accent-light: #dc2626;
+  --success: #15803d;
+  --card-shadow: 0 4px 24px rgba(180, 100, 0, 0.15);
+  --pattern-opacity: 0.06;
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Bengali pattern overlay (subtle geometric motif) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 25px 25px, var(--brand) 1px, transparent 1px),
+    radial-gradient(circle at 75px 75px, var(--accent) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: var(--pattern-opacity);
+}
+
+/* Ensure content is above pattern */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 3px;
+}
+
+/* ─── Bengali decorative heading font ────────────────────────────────────── */
+.bengali-title {
+  font-family: 'Tiro Bangla', 'Inter', serif;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Theme-aware utility classes ────────────────────────────────────────── */
+.bg-base {
+  background-color: var(--bg-base);
+}
+
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+
+.bg-elevated {
+  background-color: var(--bg-elevated);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.brand-color {
+  color: var(--brand);
+}
+
+.card-shadow {
+  box-shadow: var(--card-shadow);
+}
+
+/* ─── Theme input styles ─────────────────────────────────────────────────── */
+.theme-input {
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 0.5rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 1rem;
+  /* overridden by Tailwind pl-* when icons present */
+  padding-right: 1rem;
+  font-size: 0.875rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.theme-input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 25%, transparent);
+}
+
+.theme-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ─── Theme card ─────────────────────────────────────────────────────────── */
+.theme-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* ─── Brand button ───────────────────────────────────────────────────────── */
+.btn-brand {
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-brand:hover {
+  background: linear-gradient(135deg, var(--brand-light), var(--brand));
+  transform: translateY(-1px);
+}
+
+.btn-brand:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Smooth theme transitions ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* Exclude animation-critical elements */
+.animate-spin,
+.animate-pulse {
+  transition: none !important;
+}
