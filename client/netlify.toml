@@ -1,11 +1,8 @@
-# Netlify configuration for The Bengali Bowl (React SPA)
-
 [build]
   base    = "client"
   command = "npm run build"
   publish = "dist"
 
-# Redirect all routes to index.html so React Router handles navigation
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
